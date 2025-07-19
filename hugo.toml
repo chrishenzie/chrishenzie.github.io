@@ -1,0 +1,21 @@
+baseURL = 'https://chrishenzie.com/'
+languageCode = 'en-us'
+title = 'Chris Henzie'
+theme = 'PaperMod'
+
+[params]
+  customCSS = ["css/custom.css"]
+
+  [params.homeInfoParams]
+    Title = "Hi there 👋"
+    Content = """Welcome to my corner of the internet! It's currently under construction 🚧, but feel free to follow the social links below for more details.
+
+Some quick details about me: 1) I'm a software engineer at Google working on Kubernetes and containerd. 2) I have a passion for open source. 3) When I'm not at my keyboard, you can find me in the dance studio practicing for our next ballroom competition. 🕺💃"""
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/chrishenzie"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/chris-henzie"
