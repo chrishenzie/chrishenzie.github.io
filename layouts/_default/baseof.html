@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0e1a27">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ with resources.Get "css/main.css" }}<style>{{ .Content | safeCSS }}</style>{{ end }}
+</head>
+<body>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  {{ block "main" . }}{{ end }}
+  {{ with resources.Get "js/sky.js" }}<script>{{ .Content | safeJS }}</script>{{ end }}
+</body>
+</html>

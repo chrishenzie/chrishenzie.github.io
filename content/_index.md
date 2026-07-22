@@ -1,4 +1,3 @@
 ---
-title: "Home"
-hidemeta: true
+title: "Chris Henzie"
 ---

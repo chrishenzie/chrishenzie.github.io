@@ -1,0 +1,26 @@
+{{ define "main" }}
+<main>
+  <div class="col">
+    <div class="name">Chris Henzie</div>
+    <div class="role">software engineer · google</div>
+
+    <p class="lede">I build container infrastructure at Google, working across Kubernetes and containerd.</p>
+
+    <p>I'm a containerd maintainer and one of its security advisors. Much of my work is triaging the project's incoming vulnerability reports and deciding what's genuine, increasingly amid a flood of AI-generated ones.</p>
+
+    <p>Earlier, in Kubernetes SIG-Storage, I authored the <a class="ln" href="https://github.com/kubernetes/enhancements/issues/2485">ReadWriteOncePod access mode</a>, which restricts a volume to a single pod and went stable in 1.29. More recently I co-authored <a class="ln" href="https://github.com/kubernetes/enhancements/issues/5474">writable cgroups</a>.</p>
+
+    <p>Away from the keyboard, I compete in ballroom dance with my wife.</p>
+
+    <p class="invite">Based in the Bay Area, and happy to talk about container security, Kubernetes storage, or containerd.</p>
+
+    <nav class="contact" aria-label="Elsewhere">
+      <a href="https://github.com/chrishenzie">github</a>
+      <a href="https://linkedin.com/in/chris-henzie">linkedin</a>
+      {{/* TODO: restore résumé link once a current résumé exists:
+      <a href="/resume.pdf">résumé</a> */}}
+      <a href="mailto:chrishenzie@gmail.com">email</a>
+    </nav>
+  </div>
+</main>
+{{ end }}
