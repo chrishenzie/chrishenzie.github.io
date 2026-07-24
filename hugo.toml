@@ -4,7 +4,7 @@ enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
 
 [params]
-  description = 'Software engineer at Google working on Kubernetes and containerd.'
+  description = 'Maintainer and security advisor for containerd. Software engineer at Google, working upstream in Kubernetes.'
 
 [outputs]
   home = ['HTML']
