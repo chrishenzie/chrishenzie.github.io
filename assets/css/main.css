@@ -1,17 +1,15 @@
-/* Night sky: a single, committed dark theme (no light variant by design). */
+/* Warm paper, forest ink: a single, committed light theme. */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg-top:   #0e1a27;
-  --bg-mid:   #0b141d;
-  --bg-bot:   #090f16;
-  --ink:      #e7e9ec;
-  --body:     #ccd2da;
-  --soft:     #99a2ad;
-  --faint:    #636c77;
-  --rule:     #212a33;
-  --accent:   #e0ad5c;
-  --accent-soft: #e0ad5c2e;
+  --bg:       #faf7f2;
+  --ink:      #1c1b18;
+  --body:     #35322c;
+  --soft:     #6b665c;
+  --faint:    #8a8375;
+  --rule:     #e2ddd2;
+  --accent:   #2f5d4a;
+  --accent-soft: #2f5d4a40;
 
   --display: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
@@ -22,18 +20,14 @@
 
 html, body { min-height: 100%; }
 body {
-  background: linear-gradient(var(--bg-top) 0%, var(--bg-mid) 55%, var(--bg-bot) 100%);
-  background-attachment: fixed;
+  background: var(--bg);
   color: var(--ink);
   font-family: var(--serif); font-size: 18px; line-height: 1.66;
-  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
-#sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; }
-
 main {
-  position: relative; z-index: 1;
   min-height: 100dvh; display: flex; flex-direction: column; justify-content: flex-start;
   padding: clamp(56px, 12vh, 130px) clamp(24px, 8vw, 120px) clamp(40px, 8vh, 88px);
 }
@@ -45,7 +39,7 @@ main {
 @keyframes rise { to { opacity: 1; transform: none; } }
 
 .name {
-  font-family: var(--display); font-weight: 600;
+  font-family: var(--display); font-weight: 700;
   font-size: clamp(30px, 4.2vw, 40px); letter-spacing: -.015em;
   color: var(--ink); margin-bottom: 6px;
 }
