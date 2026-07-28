@@ -3,12 +3,16 @@
 # Build with `make resume` from the repo root. Output lands in static/resume.pdf,
 # which Hugo serves at /resume.pdf.
 #
-# Every role uses `highlights` rather than `summary` so the whole document is
-# bulleted; mixing the two reads as inconsistent.
+# Roles use `highlights` rather than `summary` so the whole document is bulleted;
+# mixing the two reads as inconsistent. Sunrun carries no highlights at all: the
+# entry earns its line by anchoring the start of the career, and the one bullet
+# it had said nothing a reader could use.
 
 cv:
   name: Chris Henzie
-  headline: containerd reviewer and security advisor · Senior Software Engineer at Google
+  headline:
+    containerd reviewer and security advisor · Senior Software Engineer at
+    Google
   location: Sunnyvale, CA
   email: chrishenzie@gmail.com
   website: https://chrishenzie.com
@@ -24,18 +28,37 @@ cv:
 
   sections:
     Open Source:
-      - name: '[containerd](https://containerd.io)'
+      - name: "[containerd](https://containerd.io)"
         start_date: 2024-08
         end_date: present
         highlights:
-          - The container runtime under GKE, EKS, AKS, and Docker, and a CNCF graduated project.
-          - Triage incoming vulnerability reports and land the fixes for those that hold up. Prepare releases and backport fixes across every supported branch.
-      - name: '[Kubernetes](https://kubernetes.io)'
+          - "[Reviewer and security
+            advisor](https://github.com/containerd/.project/blob/main/MAINTAINERS)
+            for the container runtime under GKE, EKS, AKS, and Docker, a CNCF
+            graduated project."
+          - Triage vulnerability reports and land the fixes that hold up.
+            Prepare releases and backport fixes across supported branches.
+      - name: "[Kubernetes](https://kubernetes.io)"
         start_date: 2020-08
         end_date: present
         highlights:
-          - 'SIG-Storage: authored [KEP-2485](https://github.com/kubernetes/enhancements/issues/2485), the ReadWriteOncePod access mode, restricting a volume to one pod where ReadWriteOnce restricts only to one node. Alpha in 1.22 through stable in 1.29, and wrote the [kubernetes.io announcements](https://kubernetes.io/blog/2023/12/18/read-write-once-pod-access-mode-ga/).'
-          - 'SIG-Node: co-author of [KEP-5474](https://github.com/kubernetes/enhancements/issues/5474), writable cgroups, which lets frameworks like [Ray](https://ray.io) set limits on their own worker processes without running privileged. Shipped it in GKE ahead of upstream, and upstreamed the [NRI plugin](https://github.com/containerd/nri/pull/269).'
+          - "SIG-Storage: authored
+            [KEP-2485](https://github.com/kubernetes/enhancements/issues/2485),
+            the ReadWriteOncePod access mode, restricting a volume to one pod
+            where ReadWriteOnce restricts only to one node. Alpha in 1.22
+            through stable in 1.29, with the
+            [alpha](https://kubernetes.io/blog/2021/09/13/read-write-once-pod-access-mode-alpha/),
+            [beta](https://kubernetes.io/blog/2023/04/20/read-write-once-pod-access-mode-beta/),
+            and
+            [stable](https://kubernetes.io/blog/2023/12/18/read-write-once-pod-access-mode-ga/)
+            announcements on kubernetes.io."
+          - "SIG-Node: co-author of
+            [KEP-5474](https://github.com/kubernetes/enhancements/issues/5474),
+            writable cgroups, which lets AI/ML frameworks like
+            [Ray](https://ray.io) set resource limits on their child processes
+            without running as privileged. Built the GKE implementation as an
+            [NRI plugin](https://github.com/containerd/nri/pull/269), shipped it
+            to customers ahead of upstream, and upstreamed the plugin."
 
     Experience:
       - company: Google
@@ -44,59 +67,89 @@ cv:
         end_date: present
         location: Sunnyvale, CA
         highlights:
-          - 'Kubernetes node and container runtime for GKE. Leading writable cgroups upstream and driving the [Node Resource Interface](https://github.com/containerd/nri) toward 1.0, both for AI/ML workloads that manage their own resources.'
-          - Established a shared maintenance model for the Google teams that depend on containerd, and co-organized the 2026 containerd Maintainer Summit.
+          - "Kubernetes node and container runtime for GKE. Driving the
+            containerd [Node Resource
+            Interface](https://github.com/containerd/nri) to 1.0, the plugin API
+            that writable cgroups and other node-level resource controls are
+            built on."
+          - Established a shared maintenance model for containerd at Google, so
+            the teams that depend on it land their own features, fixes, and
+            releases. Co-organized the 2026 containerd Maintainer Summit.
       - company: Google
         position: Software Engineer, Google Cloud
         start_date: 2024-02
         end_date: 2025-10
         location: Sunnyvale, CA
         highlights:
-          - Led GKE's migration to containerd 2.0, which removed support for the CRI v1alpha2 API, Docker Schema 1 images, and `registry.configs.tls`.
-          - Built the detection that pauses automatic upgrades for clusters still relying on removed features. Every cluster reaching Kubernetes 1.33 passes through it.
-          - Published an [eBPF tracer](https://github.com/GoogleCloudPlatform/k8s-node-tools/tree/master/containerd/socket-tracer) resolving containerd socket connections back to a pod, which found most of the affected third-party workloads.
-          - Drove remediation across affected customers and third-party vendors, and migrated first-party services onto a shared library negotiating the CRI version, coordinating their releases against the target GKE release.
+          - Led GKE's migration to containerd 2.0, which removed support for the
+            deprecated CRI v1alpha2 API, Docker Schema 1 images, and certain
+            registry config fields.
+          - Built the detection path, from a check on the node to a
+            recommendation in the customer's console. Every cluster reaching
+            Kubernetes 1.33 passes through it, and the ones it flags have their
+            automatic upgrades paused until they migrate off.
+          - For customers who could not identify the responsible workload,
+            published an [eBPF socket
+            tracer](https://github.com/GoogleCloudPlatform/k8s-node-tools/tree/master/containerd/socket-tracer)
+            resolving deprecated API calls back to the calling container, which
+            coincidentally flagged several third-party workloads needing
+            updates.
+          - Coordinated every dependent first-party GKE service onto a shared
+            library negotiating the CRI version, with each team's release
+            landing before the 1.33 cutoff. Drove remediation with affected
+            customers and third-party vendors.
       - company: Google
         position: Software Engineer, YouTube
         start_date: 2023-03
         end_date: 2024-02
         location: San Bruno, CA
         highlights:
-          - Machine learning serving infrastructure for YouTube Discovery. Rebuilt the release process for the model server and router binaries, and added per-model authorization to serving RPCs.
+          - Machine learning serving infrastructure for YouTube Discovery.
+            Evaluated alternative model-serving runtimes across recommendation
+            model families for compute efficiency, and added per-model
+            authorization to serving RPCs.
       - company: Google
         position: Software Engineer, Google Cloud
         start_date: 2020-05
         end_date: 2023-03
         location: Sunnyvale, CA
         highlights:
-          - 'Kubernetes storage for GKE and Anthos Multi-Cloud. Maintained the upstream [CSI sidecars](https://github.com/kubernetes-csi) (provisioner, attacher, snapshotter, resizer) and the AWS EBS and EFS drivers, and brought up storage for Google Distributed Cloud air-gapped.'
+          - "Kubernetes storage for Anthos Multi-Cloud on AWS. Maintained the
+            upstream [CSI sidecars](https://github.com/kubernetes-csi) and the
+            AWS EBS and EFS drivers."
+          - Wrote the Kubernetes controllers that provisioned the NetApp
+            appliances backing storage on Google Distributed Cloud air-gapped.
       - company: Meta
         position: Software Engineer
         start_date: 2018-04
         end_date: 2020-05
         location: San Francisco Bay Area
         highlights:
-          - Twine, Meta's cluster manager and container platform. Built the log reader, a C++ service that became the sole path for fleet-wide container log queries, replacing an implementation that decompressed archives on disk and caused IO spikes.
+          - "[Twine](https://engineering.fb.com/2020/11/11/data-center-engineering/twine-2/),
+            Meta's cluster manager and container platform. Built the log reader,
+            a C++ service that streams and decompresses container logs on read
+            and became the sole path for fleet-wide container log queries."
       - company: Twitch
         position: DevOps Engineer
         start_date: 2016-01
         end_date: 2018-04
         location: San Francisco, CA
         highlights:
-          - Moved developer tooling for the live video CDN off bare metal onto AWS, cutting new application stack provisioning to under four minutes with a Terraform-based deployment utility for ECS.
+          - "Built continuous deployment for the live video CDN: repo metadata
+            to a Terraform-provisioned ECS service in under four minutes."
       - company: Sunrun
         position: Software Engineer, then DevOps Engineer
         start_date: 2013-05
         end_date: 2015-12
         location: San Francisco, CA
-        highlights:
-          - Automated provisioning and deployment for the solar design platform.
 
     Skills:
       - label: Languages
         details: Go, Python, Bash, C++
       - label: Systems
-        details: Kubernetes, CRI, containerd, runc, OCI runtime spec, Linux containers (cgroups, namespaces)
+        details:
+          Kubernetes, CRI, NRI, containerd, runc, OCI runtime spec, Linux
+          containers (cgroups, namespaces)
 
     Education:
       - institution: University of California, Berkeley
