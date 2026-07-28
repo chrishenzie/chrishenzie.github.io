@@ -88,12 +88,11 @@ cv:
             recommendation in the customer's console. Every cluster reaching
             Kubernetes 1.33 passes through it, and the ones it flags have their
             automatic upgrades paused until they migrate off.
-          - For customers who could not identify the responsible workload,
-            published an [eBPF socket
+          - For customers who could not identify the workload still calling the
+            deprecated API, published an [eBPF socket
             tracer](https://github.com/GoogleCloudPlatform/k8s-node-tools/tree/master/containerd/socket-tracer)
-            resolving deprecated API calls back to the calling container, which
-            coincidentally flagged several third-party workloads needing
-            updates.
+            resolving the calls back to the container, which also flagged
+            widely used observability and security agents needing updates.
           - Coordinated every dependent first-party GKE service onto a shared
             library negotiating the CRI version, with each team's release
             landing before the 1.33 cutoff. Drove remediation with affected
