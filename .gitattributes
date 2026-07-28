@@ -1,0 +1,4 @@
+# The résumé PDF has no NUL byte in its first 8000 bytes, so Git's heuristic
+# reads it as text: xref entries end in CR and trip `diff --check`, and EOL
+# conversion would corrupt the file wherever core.autocrlf is on.
+*.pdf binary
