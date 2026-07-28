@@ -1,0 +1,129 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+#
+# Build with `make resume` from the repo root. Output lands in static/resume.pdf,
+# which Hugo serves at /resume.pdf.
+#
+# Every role uses `highlights` rather than `summary` so the whole document is
+# bulleted; mixing the two reads as inconsistent.
+
+cv:
+  name: Chris Henzie
+  headline: containerd reviewer and security advisor · Senior Software Engineer at Google
+  location: Sunnyvale, CA
+  email: chrishenzie@gmail.com
+  website: https://chrishenzie.com
+  # Spelled out as custom connections so the displayed text stays short enough to
+  # keep the header on one line.
+  custom_connections:
+    - placeholder: github.com/chrishenzie
+      url: https://github.com/chrishenzie
+      fontawesome_icon: github
+    - placeholder: in/chrishenzie
+      url: https://linkedin.com/in/chrishenzie
+      fontawesome_icon: linkedin
+
+  sections:
+    Open Source:
+      - name: '[containerd](https://github.com/containerd/containerd)'
+        start_date: 2024-08
+        end_date: present
+        highlights:
+          - Reviewer and security advisor. CNCF graduated project, and the container runtime under GKE, EKS, AKS, and Docker.
+          - Triage incoming vulnerability reports and land the fixes for those that hold up.
+      - name: '[Kubernetes](https://github.com/kubernetes/kubernetes)'
+        start_date: 2020-08
+        end_date: present
+        highlights:
+          - 'Authored KEP-2485, the ReadWriteOncePod volume access mode, which restricts a PersistentVolume to a single pod. Stable in Kubernetes 1.29.'
+          - 'Co-author of KEP-5474, writable cgroups, after building the implementation in GKE.'
+
+    Experience:
+      - company: Google
+        position: Senior Software Engineer, Google Cloud
+        start_date: 2025-10
+        end_date: present
+        location: Sunnyvale, CA
+        highlights:
+          - Kubernetes node and container runtime for GKE, with most of the work going upstream into containerd and Kubernetes.
+      - company: Google
+        position: Software Engineer, Google Cloud
+        start_date: 2024-02
+        end_date: 2025-10
+        location: Sunnyvale, CA
+        highlights:
+          - Led GKE's migration to containerd 2.0, which removed the CRI v1alpha2 API, Docker Schema 1 images, and `registry.configs.tls`.
+          - Built the detection that pauses automatic upgrades for clusters still relying on removed features. Every cluster reaching Kubernetes 1.33 passes through it.
+          - Drove remediation across affected customers, third-party vendors whose agents called the removed API, and first-party services on the same path.
+      - company: Google
+        position: Software Engineer, YouTube
+        start_date: 2023-03
+        end_date: 2024-02
+        location: San Bruno, CA
+        highlights:
+          - Machine learning serving infrastructure for YouTube Discovery, a platform absorbing a high rate of newly released experimental models.
+          - Rebuilt the release process for the model server and router binaries, added per-model authorization to serving RPCs, and ran runtime migration experiments across recommendation model families.
+      - company: Google
+        position: Software Engineer, Google Cloud
+        start_date: 2020-05
+        end_date: 2023-03
+        location: Sunnyvale, CA
+        highlights:
+          - Kubernetes storage, and Google Distributed Cloud air-gapped.
+      - company: Meta
+        position: Software Engineer
+        start_date: 2018-04
+        end_date: 2020-05
+        location: San Francisco Bay Area
+        highlights:
+          - Twine, Meta's cluster manager and container platform. Built the log reader, a C++ service that took over 100% of fleet-wide container log queries with no production incidents, replacing an implementation that decompressed archives on disk and caused IO spikes.
+          - Implemented write APIs on the Twine Front End, including a job resize API handling over 96% of capacity-management resizes.
+      - company: Twitch
+        position: DevOps Engineer
+        start_date: 2016-01
+        end_date: 2018-04
+        location: San Francisco, CA
+        highlights:
+          - Moved developer tooling for the live video CDN off bare metal onto AWS, cutting new application stack provisioning to under four minutes with a Terraform-based deployment utility for ECS. Built power management for the bare-metal host fleet, enabling automated remediation.
+      - company: Sunrun
+        position: DevOps Engineer, then Software Engineer
+        start_date: 2013-05
+        end_date: 2015-12
+        location: San Francisco, CA
+        highlights:
+          - Automated provisioning and deployment for the solar design platform. Cut project build times by up to 80% distributing Jenkins tasks across build instances, and built a customer-facing status dashboard that reduced monthly trouble tickets by 20%.
+
+    Skills:
+      - label: Languages
+        details: Go, Python, Bash, C++
+      - label: Systems
+        details: Kubernetes, containerd, Linux containers (cgroups, namespaces), cloud infrastructure, infrastructure as code
+
+    Education:
+      - institution: University of California, Berkeley
+        area: Electrical Engineering and Computer Science
+        degree: BS
+        start_date: 2009-08
+        end_date: 2013-08
+        location: Berkeley, CA
+
+design:
+  theme: engineeringresumes
+  page:
+    size: us-letter
+    top_margin: 0.45in
+    bottom_margin: 0.45in
+    left_margin: 0.5in
+    right_margin: 0.5in
+    show_footer: false
+    show_top_note: false
+  # 9.2pt / 0.44em is the largest that still fits one page with every role
+  # bulleted. Adding a bullet will push it over; drop leading before size.
+  typography:
+    line_spacing: 0.44em
+    font_size:
+      body: 9.2pt
+      connections: 8.8pt
+  header:
+    alignment: left
+  links:
+    underline: false
