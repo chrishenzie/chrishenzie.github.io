@@ -2,17 +2,19 @@
 <main>
   <div class="col">
     <div class="name">Chris Henzie</div>
-    <div class="role">software engineer · google</div>
+    <div class="role">senior software engineer · google</div>
 
-    <p class="lede">I work on container infrastructure at Google. I try to keep most of that work upstream, in <a class="ln" href="https://containerd.io">containerd</a> and <a class="ln" href="https://kubernetes.io">Kubernetes</a>.</p>
+    <p class="lede">I work on container infrastructure at Google. Most of that work goes upstream, into <a class="ln" href="https://containerd.io">containerd</a> and <a class="ln" href="https://kubernetes.io">Kubernetes</a>.</p>
 
-    <p>I'm a reviewer for containerd, and became a security advisor there during the wave of AI-generated vulnerability reports. Most of my week goes to triaging what comes in and patching what holds up.</p>
+    <p>I'm a <a class="ln" href="https://github.com/containerd/.project/blob/main/MAINTAINERS">reviewer for containerd</a>, and took on the security advisor role there during the wave of AI-generated vulnerability reports. Most of my week goes to triaging what comes in and patching what holds up.</p>
 
-    <p>I co-authored <a class="ln" href="https://github.com/kubernetes/enhancements/issues/5474">writable cgroups</a>, which lets unprivileged containers manage resources for their child processes. Earlier, in Kubernetes SIG-Storage, I authored the <a class="ln" href="https://github.com/kubernetes/enhancements/issues/2485">ReadWriteOncePod access mode</a> (a volume restricted to one pod, stable in 1.29). Before Google I worked on Twine, Meta's cluster management system.</p>
+    <p>I led GKE's migration to containerd 2.0, which removed support for the CRI v1alpha2 API and Docker Schema 1 images. Detection ran from a check on the node up to a recommendation in the customer's console, and clusters that came up positive had their upgrades paused until they moved off. Every cluster reaching Kubernetes 1.33 passes through that check. Finding which workloads were still making those calls took an <a class="ln" href="https://github.com/GoogleCloudPlatform/k8s-node-tools/tree/master/containerd/socket-tracer">eBPF tracer</a> I wrote, and that is how most of the affected third-party workloads turned up.</p>
+
+    <p>I co-authored <a class="ln" href="https://github.com/kubernetes/enhancements/issues/5474">writable cgroups</a>, which lets unprivileged containers manage resources for their child processes. Earlier, in Kubernetes SIG-Storage, I authored the <a class="ln" href="https://github.com/kubernetes/enhancements/issues/2485">ReadWriteOncePod access mode</a> (a volume restricted to one pod, <a class="ln" href="https://kubernetes.io/blog/2023/12/18/read-write-once-pod-access-mode-ga/">stable in 1.29</a>). Before Google I worked on Twine, Meta's cluster management system.</p>
 
     <p>My wife and I compete in ballroom dance.</p>
 
-    <p class="invite">I'm in the Bay Area. Happy to talk containerd, Kubernetes, or container runtimes generally.</p>
+    <p class="invite">I'm in the Bay Area. Happy to talk containerd, Kubernetes, or container runtimes.</p>
 
     <nav class="contact" aria-label="Elsewhere">
       <a href="https://github.com/chrishenzie">github</a>
