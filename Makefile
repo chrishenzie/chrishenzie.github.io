@@ -3,13 +3,20 @@ RENDERCV   := $(VENV)/bin/rendercv
 RESUME_SRC := resume/resume.yaml
 RESUME_PDF := static/resume.pdf
 
-.PHONY: resume clean-resume
+.PHONY: resume serve clean-resume
 
 # Without this, a failed page check leaves the oversized PDF in place and the
 # next `make resume` reports success without rebuilding it.
 .DELETE_ON_ERROR:
 
 resume: $(RESUME_PDF)
+
+# Hugo watches static/, so a PDF rebuilt mid-session is picked up, but it never
+# runs make: editing $(RESUME_SRC) while the server is up leaves the served PDF
+# stale until the next `make serve`. --disableFastRender because fast render
+# skips pages it believes an edit did not affect.
+serve: $(RESUME_PDF)
+	hugo server --disableFastRender
 
 $(RENDERCV):
 	python3 -m venv $(VENV)
