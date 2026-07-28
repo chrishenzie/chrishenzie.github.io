@@ -24,18 +24,18 @@ cv:
 
   sections:
     Open Source:
-      - name: '[containerd](https://github.com/containerd/containerd)'
+      - name: '[containerd](https://containerd.io)'
         start_date: 2024-08
         end_date: present
         highlights:
-          - Reviewer and security advisor. CNCF graduated project, and the container runtime under GKE, EKS, AKS, and Docker.
-          - Triage incoming vulnerability reports and land the fixes for those that hold up.
-      - name: '[Kubernetes](https://github.com/kubernetes/kubernetes)'
+          - The container runtime under GKE, EKS, AKS, and Docker, and a CNCF graduated project.
+          - Triage incoming vulnerability reports and land the fixes for those that hold up. Prepare releases and backport fixes across every supported branch.
+      - name: '[Kubernetes](https://kubernetes.io)'
         start_date: 2020-08
         end_date: present
         highlights:
-          - 'Authored KEP-2485, the ReadWriteOncePod volume access mode, which restricts a PersistentVolume to a single pod. Stable in Kubernetes 1.29.'
-          - 'Co-author of KEP-5474, writable cgroups, after building the implementation in GKE.'
+          - 'SIG-Storage: authored [KEP-2485](https://github.com/kubernetes/enhancements/issues/2485), the ReadWriteOncePod access mode, restricting a volume to one pod where ReadWriteOnce restricts only to one node. Alpha in 1.22 through stable in 1.29, and wrote the [kubernetes.io announcements](https://kubernetes.io/blog/2023/12/18/read-write-once-pod-access-mode-ga/).'
+          - 'SIG-Node: co-author of [KEP-5474](https://github.com/kubernetes/enhancements/issues/5474), writable cgroups, which lets frameworks like [Ray](https://ray.io) set limits on their own worker processes without running privileged. Shipped it in GKE ahead of upstream, and upstreamed the [NRI plugin](https://github.com/containerd/nri/pull/269).'
 
     Experience:
       - company: Google
@@ -44,59 +44,59 @@ cv:
         end_date: present
         location: Sunnyvale, CA
         highlights:
-          - Kubernetes node and container runtime for GKE, with most of the work going upstream into containerd and Kubernetes.
+          - 'Kubernetes node and container runtime for GKE. Leading writable cgroups upstream and driving the [Node Resource Interface](https://github.com/containerd/nri) toward 1.0, both for AI/ML workloads that manage their own resources.'
+          - Established a shared maintenance model for the Google teams that depend on containerd, and co-organized the 2026 containerd Maintainer Summit.
       - company: Google
         position: Software Engineer, Google Cloud
         start_date: 2024-02
         end_date: 2025-10
         location: Sunnyvale, CA
         highlights:
-          - Led GKE's migration to containerd 2.0, which removed the CRI v1alpha2 API, Docker Schema 1 images, and `registry.configs.tls`.
+          - Led GKE's migration to containerd 2.0, which removed support for the CRI v1alpha2 API, Docker Schema 1 images, and `registry.configs.tls`.
           - Built the detection that pauses automatic upgrades for clusters still relying on removed features. Every cluster reaching Kubernetes 1.33 passes through it.
-          - Drove remediation across affected customers, third-party vendors whose agents called the removed API, and first-party services on the same path.
+          - Published an [eBPF tracer](https://github.com/GoogleCloudPlatform/k8s-node-tools/tree/master/containerd/socket-tracer) resolving containerd socket connections back to a pod, which found most of the affected third-party workloads.
+          - Drove remediation across affected customers and third-party vendors, and migrated first-party services onto a shared library negotiating the CRI version, coordinating their releases against the target GKE release.
       - company: Google
         position: Software Engineer, YouTube
         start_date: 2023-03
         end_date: 2024-02
         location: San Bruno, CA
         highlights:
-          - Machine learning serving infrastructure for YouTube Discovery, a platform absorbing a high rate of newly released experimental models.
-          - Rebuilt the release process for the model server and router binaries, added per-model authorization to serving RPCs, and ran runtime migration experiments across recommendation model families.
+          - Machine learning serving infrastructure for YouTube Discovery. Rebuilt the release process for the model server and router binaries, and added per-model authorization to serving RPCs.
       - company: Google
         position: Software Engineer, Google Cloud
         start_date: 2020-05
         end_date: 2023-03
         location: Sunnyvale, CA
         highlights:
-          - Kubernetes storage, and Google Distributed Cloud air-gapped.
+          - 'Kubernetes storage for GKE and Anthos Multi-Cloud. Maintained the upstream [CSI sidecars](https://github.com/kubernetes-csi) (provisioner, attacher, snapshotter, resizer) and the AWS EBS and EFS drivers, and brought up storage for Google Distributed Cloud air-gapped.'
       - company: Meta
         position: Software Engineer
         start_date: 2018-04
         end_date: 2020-05
         location: San Francisco Bay Area
         highlights:
-          - Twine, Meta's cluster manager and container platform. Built the log reader, a C++ service that took over 100% of fleet-wide container log queries with no production incidents, replacing an implementation that decompressed archives on disk and caused IO spikes.
-          - Implemented write APIs on the Twine Front End, including a job resize API handling over 96% of capacity-management resizes.
+          - Twine, Meta's cluster manager and container platform. Built the log reader, a C++ service that became the sole path for fleet-wide container log queries, replacing an implementation that decompressed archives on disk and caused IO spikes.
       - company: Twitch
         position: DevOps Engineer
         start_date: 2016-01
         end_date: 2018-04
         location: San Francisco, CA
         highlights:
-          - Moved developer tooling for the live video CDN off bare metal onto AWS, cutting new application stack provisioning to under four minutes with a Terraform-based deployment utility for ECS. Built power management for the bare-metal host fleet, enabling automated remediation.
+          - Moved developer tooling for the live video CDN off bare metal onto AWS, cutting new application stack provisioning to under four minutes with a Terraform-based deployment utility for ECS.
       - company: Sunrun
-        position: DevOps Engineer, then Software Engineer
+        position: Software Engineer, then DevOps Engineer
         start_date: 2013-05
         end_date: 2015-12
         location: San Francisco, CA
         highlights:
-          - Automated provisioning and deployment for the solar design platform. Cut project build times by up to 80% distributing Jenkins tasks across build instances, and built a customer-facing status dashboard that reduced monthly trouble tickets by 20%.
+          - Automated provisioning and deployment for the solar design platform.
 
     Skills:
       - label: Languages
         details: Go, Python, Bash, C++
       - label: Systems
-        details: Kubernetes, containerd, Linux containers (cgroups, namespaces), cloud infrastructure, infrastructure as code
+        details: Kubernetes, CRI, containerd, runc, OCI runtime spec, Linux containers (cgroups, namespaces)
 
     Education:
       - institution: University of California, Berkeley
@@ -108,6 +108,11 @@ cv:
 
 design:
   theme: engineeringresumes
+  # The theme paints every link black and turns underlines on. Links are the
+  # point of this document, so they get the same accent as in-prose links on
+  # chrishenzie.com instead.
+  colors:
+    links: rgb(47,93,74)
   page:
     size: us-letter
     top_margin: 0.45in
@@ -116,14 +121,27 @@ design:
     right_margin: 0.5in
     show_footer: false
     show_top_note: false
-  # 9.2pt / 0.44em is the largest that still fits one page with every role
-  # bulleted. Adding a bullet will push it over; drop leading before size.
+  # Measured 2026-07-27: with the tightened spacing below there are about four
+  # spare lines at 9.2pt. 9.6pt does not fit, so the next size up costs more
+  # than the spacing reclaimed. Drop leading before size if it gets tight again.
+  #
+  # `justified` is the theme default and produces the same line breaks as `left`
+  # here, so left alignment costs nothing and only removes the stretched word
+  # spacing that justification was adding at this measure.
   typography:
+    alignment: left
     line_spacing: 0.44em
     font_size:
       body: 9.2pt
       connections: 8.8pt
+  # Theme defaults are 0.5cm/0.3cm and 1.2em. Tightening them is where the spare
+  # lines came from; the type was already as small as it should go.
+  section_titles:
+    space_above: 0.3cm
+    space_below: 0.2cm
+  sections:
+    space_between_regular_entries: 0.9em
   header:
     alignment: left
   links:
-    underline: false
+    underline: true
