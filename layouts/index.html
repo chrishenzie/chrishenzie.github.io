@@ -6,7 +6,7 @@
 
     <p class="lede">I work on container infrastructure at Google. Most of that work goes upstream, into <a class="ln" href="https://containerd.io">containerd</a> and <a class="ln" href="https://kubernetes.io">Kubernetes</a>.</p>
 
-    <p>I'm a <a class="ln" href="https://github.com/containerd/.project/blob/main/MAINTAINERS">reviewer for containerd</a>, and took on the security advisor role there during the wave of AI-generated vulnerability reports. Most of my week goes to triaging what comes in and patching what holds up.</p>
+    <p>I'm a reviewer for containerd, and took on the security advisor role there during the wave of AI-generated vulnerability reports. Most of my week goes to triaging what comes in and patching what holds up.</p>
 
     <p>I led GKE's migration to containerd 2.0, which removed support for the CRI v1alpha2 API and Docker Schema 1 images. I built the detection: every cluster reaching Kubernetes 1.33 passes through it, and the ones still using those features have their upgrades paused until they migrate off. For customers who couldn't tell which workload was still calling the deprecated API, I wrote an <a class="ln" href="https://github.com/GoogleCloudPlatform/k8s-node-tools/tree/master/containerd/socket-tracer">eBPF tracer</a> that resolves the calls back to the container, which also flagged widely used observability and security agents needing updates.</p>
 

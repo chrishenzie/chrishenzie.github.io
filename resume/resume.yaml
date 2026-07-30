@@ -32,10 +32,8 @@ cv:
         start_date: 2024-08
         end_date: present
         highlights:
-          - "[Reviewer and security
-            advisor](https://github.com/containerd/.project/blob/main/MAINTAINERS)
-            for the container runtime under GKE, EKS, AKS, and Docker, a CNCF
-            graduated project."
+          - Reviewer and security advisor for the container runtime under GKE,
+            EKS, AKS, and Docker, a CNCF graduated project.
           - Triage vulnerability reports and land the fixes that hold up.
             Prepare releases and backport fixes across supported branches.
       - name: "[Kubernetes](https://kubernetes.io)"
